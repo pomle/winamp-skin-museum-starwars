@@ -96,7 +96,7 @@ async function init() {
 
   function animation(time) {
     const scrollOffset = time * 0.05 - 2600;
-    const exitPos = ROWS * CELL_HEIGHT;
+    const farPoint = ROWS * CELL_HEIGHT;
 
     meshes.forEach((mesh, index) => {
       const col = index % COLS;
@@ -104,16 +104,16 @@ async function init() {
 
       const offsetX = col * CELL_WIDTH;
       const offsetY = row * CELL_HEIGHT + scrollOffset;
-      const loopCount = Math.floor(offsetY / exitPos);
+      const loopCount = Math.floor(offsetY / farPoint);
 
       mesh.position.x = offsetX;
 
       mesh.position.y = offsetY;
-      mesh.position.y -= loopCount * exitPos;
+      mesh.position.y -= loopCount * farPoint;
 
       {
-        const fadeEnd = exitPos;
-        const fadeStart = exitPos - CELL_HEIGHT;
+        const fadeEnd = farPoint;
+        const fadeStart = farPoint - CELL_HEIGHT;
         const exitProgress = lerp(mesh.position.y, fadeStart, fadeEnd);
         mesh.material.opacity = 1 - exitProgress;
       }
