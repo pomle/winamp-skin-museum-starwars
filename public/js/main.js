@@ -67,8 +67,9 @@ async function init() {
 
   camera.rotation.x = 1.2;
 
-  const light = new THREE.PointLight(0xffffff, 2, 10000);
+  const light = new THREE.PointLight(0xffffff, 1.25, 10000);
   light.position.copy(camera.position);
+  light.position.z = 800;
   scene.add(light);
 
   const starField = createStarFieldMesh();
