@@ -99,8 +99,10 @@ async function init() {
     }
   }
 
+  let scrubTime = 0;
+
   function animation(time) {
-    const scrollOffset = time * 0.05 - 2600;
+    const scrollOffset = (time + scrubTime) * 0.05 - 2600;
     const farPoint = ROWS * CELL_HEIGHT;
 
     meshes.forEach((mesh, index) => {
@@ -135,6 +137,17 @@ async function init() {
 
   renderer.setAnimationLoop(animation);
   document.body.appendChild(renderer.domElement);
+
+  window.addEventListener("keydown", (event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        scrubTime -= 5000;
+        break;
+      case "ArrowDown":
+        scrubTime += 5000;
+        break;
+    }
+  });
 }
 
 init();
