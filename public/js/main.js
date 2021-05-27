@@ -21,10 +21,6 @@ function fetchSkinIndex() {
     .then((data) => data.skins.map((skin) => createSkinURL(skin.md5)));
 }
 
-function randomColor() {
-  return Math.random() * 16777215;
-}
-
 function createStarFieldMesh() {
   const geometry = new THREE.PlaneGeometry(10000, 10000, 1);
 
