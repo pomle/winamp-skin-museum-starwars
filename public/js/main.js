@@ -44,7 +44,7 @@ function createSkinMeshes() {
   const count = COLS * ROWS;
   for (let i = 0; i < count; i++) {
     const geometry = new THREE.PlaneGeometry(SKIN_WIDTH, SKIN_HEIGHT, 1);
-    const material = new THREE.MeshBasicMaterial({ color: randomColor() });
+    const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
     const mesh = new THREE.Mesh(geometry, material);
     meshes.push(mesh);
   }
