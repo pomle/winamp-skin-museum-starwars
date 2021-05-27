@@ -1,4 +1,5 @@
 import * as THREE from "https://cdn.skypack.dev/three";
+import { createStarField } from "./stars.js";
 
 const SKIN_WIDTH = 275;
 const SKIN_HEIGHT = 348;
@@ -38,6 +39,21 @@ function randomColor() {
   return Math.random() * 16777215;
 }
 
+function createStarFieldMesh() {
+  const geometry = new THREE.PlaneGeometry(10000, 10000, 1);
+
+  const image = createStarField(2000, 2000);
+  const texture = new THREE.CanvasTexture(image);
+
+  const material = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    map: texture,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+
+  return mesh;
+}
+
 function createSkinMeshes() {
   const meshes = [];
 
@@ -68,6 +84,13 @@ async function init() {
   camera.rotation.x = 1.3;
 
   const scene = new THREE.Scene();
+
+  const starField = createStarFieldMesh();
+  starField.position.x = camera.position.x;
+  starField.position.y = 4000;
+  starField.position.z = -400;
+  starField.rotation.copy(camera.rotation);
+  scene.add(starField);
 
   const meshes = createSkinMeshes();
   meshes.forEach((mesh) => {
