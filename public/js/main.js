@@ -65,7 +65,7 @@ async function init() {
   camera.position.y = 500;
   camera.position.z = 300;
 
-  camera.rotation.x = 1.3;
+  camera.rotation.x = 1.2;
 
   const light = new THREE.PointLight(0xffffff, 2, 10000);
   light.position.copy(camera.position);
