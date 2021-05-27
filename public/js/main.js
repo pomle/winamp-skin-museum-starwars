@@ -114,8 +114,8 @@ async function init() {
       {
         const fadeEnd = farPoint;
         const fadeStart = farPoint - CELL_HEIGHT;
-        const exitProgress = lerp(mesh.position.y, fadeStart, fadeEnd);
-        mesh.material.opacity = 1 - exitProgress;
+        const fadeProgress = lerp(mesh.position.y, fadeStart, fadeEnd);
+        mesh.material.opacity = 1 - fadeProgress;
       }
 
       {
