@@ -53,6 +53,8 @@ function createSkinMeshes() {
 async function init() {
   const skinIndex = await fetchSkinIndex();
 
+  const scene = new THREE.Scene();
+
   const camera = new THREE.PerspectiveCamera(
     70,
     window.innerWidth / window.innerHeight,
@@ -65,7 +67,6 @@ async function init() {
 
   camera.rotation.x = 1.3;
 
-  const scene = new THREE.Scene();
 
   const starField = createStarFieldMesh();
   starField.position.x = camera.position.x;
