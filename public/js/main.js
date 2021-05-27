@@ -42,7 +42,7 @@ function createSkinMeshes() {
   const count = COLS * ROWS;
   for (let i = 0; i < count; i++) {
     const geometry = new THREE.PlaneGeometry(SKIN_WIDTH, SKIN_HEIGHT, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
     const mesh = new THREE.Mesh(geometry, material);
     meshes.push(mesh);
   }
@@ -67,6 +67,9 @@ async function init() {
 
   camera.rotation.x = 1.3;
 
+  const light = new THREE.PointLight(0xffffff, 2, 10000);
+  light.position.copy(camera.position);
+  scene.add(light);
 
   const starField = createStarFieldMesh();
   starField.position.x = camera.position.x;
