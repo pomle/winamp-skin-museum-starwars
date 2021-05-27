@@ -63,7 +63,7 @@ async function init() {
   );
   camera.position.x = (CELL_WIDTH * COLS) / 2 - CELL_WIDTH / 2;
   camera.position.y = 500;
-  camera.position.z = 400;
+  camera.position.z = 300;
 
   camera.rotation.x = 1.3;
 
