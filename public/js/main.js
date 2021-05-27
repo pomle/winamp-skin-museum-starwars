@@ -62,10 +62,10 @@ async function init() {
     10000
   );
   camera.position.x = (CELL_WIDTH * COLS) / 2 - CELL_WIDTH / 2;
-  camera.position.y = 2000;
-  camera.position.z = 5000;
+  camera.position.y = 500;
+  camera.position.z = 400;
 
-  //camera.rotation.x = 1.3;
+  camera.rotation.x = 1.3;
 
   const scene = new THREE.Scene();
 
