@@ -1,6 +1,8 @@
 import * as THREE from "https://cdn.skypack.dev/three";
 import { createStarField } from "./stars.js";
 import { lerp } from "./math.js";
+import { scale } from "./image.js";
+import { loadImage } from "./loader.js";
 
 const SKIN_WIDTH = 275;
 const SKIN_HEIGHT = 348;
@@ -89,13 +91,21 @@ async function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   const meshMeta = new Map();
-  function updateImage(mesh, index) {
+  async function updateImage(mesh, index) {
     const currentIndex = meshMeta.get(mesh);
     if (currentIndex !== index) {
-      const skinURL = skinIndex[index % skinIndex.length];
-      const texture = new THREE.TextureLoader().load(skinURL);
-      mesh.material.map = texture;
       meshMeta.set(mesh, index);
+
+      mesh.visible = false;
+      mesh.material.needsUpdate = true;
+
+      const skinURL = skinIndex[index % skinIndex.length];
+      const image = await loadImage(skinURL);
+      const upscaled = scale(image, 4);
+      const texture = new THREE.CanvasTexture(upscaled);
+      mesh.material.map = texture;
+      mesh.material.needsUpdate = true;
+      mesh.visible = true;
     }
   }
 
