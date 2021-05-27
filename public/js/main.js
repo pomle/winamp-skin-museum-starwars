@@ -90,7 +90,7 @@ async function init() {
   }
 
   function animation(time) {
-    const scrollOffset = time * 0.1;
+    const scrollOffset = (time - 52000) * 0.05;
     const exitPos = ROWS * CELL_HEIGHT;
 
     meshes.forEach((mesh, index) => {
