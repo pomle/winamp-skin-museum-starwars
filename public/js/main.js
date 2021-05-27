@@ -1,5 +1,6 @@
 import * as THREE from "https://cdn.skypack.dev/three";
 import { createStarField } from "./stars.js";
+import { lerp } from "./math.js";
 
 const SKIN_WIDTH = 275;
 const SKIN_HEIGHT = 348;
@@ -12,21 +13,6 @@ const CELL_HEIGHT = SKIN_HEIGHT + 10;
 
 function createSkinURL(id) {
   return `https://cdn.webampskins.org/screenshots/${id}.png`;
-}
-
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    max;
-  }
-  return value;
-}
-
-function progress(position, start, end) {
-  const len = end - start;
-  return clamp((position - start) / len, 0, 1);
 }
 
 function fetchSkinIndex() {
@@ -132,7 +118,7 @@ async function init() {
       {
         const fadeEnd = exitPos;
         const fadeStart = exitPos - CELL_HEIGHT;
-        const exitProgress = progress(mesh.position.y, fadeStart, fadeEnd);
+        const exitProgress = lerp(mesh.position.y, fadeStart, fadeEnd);
         mesh.material.opacity = 1 - exitProgress;
       }
 
