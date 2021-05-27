@@ -82,7 +82,9 @@ async function init() {
   function updateImage(mesh, index) {
     const currentIndex = meshMeta.get(mesh);
     if (currentIndex !== index) {
-      console.log("Change index");
+      const skinURL = skinIndex[index % skinIndex.length];
+      const texture = new THREE.TextureLoader().load(skinURL);
+      mesh.material.map = texture;
       meshMeta.set(mesh, index);
     }
   }
