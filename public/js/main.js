@@ -147,6 +147,9 @@ async function init() {
 
   window.addEventListener("keydown", (event) => {
     switch (event.code) {
+      case "Space":
+        isPlaying = !isPlaying;
+        break;
       case "ArrowUp":
         scrubTime -= 5000;
         break;
