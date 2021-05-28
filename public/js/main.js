@@ -99,10 +99,17 @@ async function init() {
     }
   }
 
+  let isPlaying = true;
+  let lastTime = NaN;
   let scrubTime = 0;
 
   function animation(time) {
-    const scrollOffset = (time + scrubTime) * 0.05 - 2600;
+    if (isPlaying && isFinite(lastTime)) {
+      scrubTime += time - lastTime;
+    }
+    lastTime = time;
+
+    const scrollOffset = scrubTime * 0.05 - 2600;
     const farPoint = ROWS * CELL_HEIGHT;
 
     meshes.forEach((mesh, index) => {
