@@ -139,7 +139,7 @@ async function init() {
   document.body.appendChild(renderer.domElement);
 
   window.addEventListener("keydown", (event) => {
-    switch (event.key) {
+    switch (event.code) {
       case "ArrowUp":
         scrubTime -= 5000;
         break;
